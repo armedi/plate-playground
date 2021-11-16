@@ -1,7 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import macrosPlugin from 'vite-plugin-babel-macros'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()]
+  plugins: [react(), macrosPlugin()],
+  define: {
+    'process.platform': JSON.stringify('darwin'),
+    'process.env': {},
+  },
 })

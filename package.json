@@ -7,15 +7,22 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@styled-icons/boxicons-regular": "^10.38.0",
+    "@styled-icons/foundation": "^10.34.0",
+    "@styled-icons/material": "^10.34.0",
+    "@tippyjs/react": "^4.2.6",
     "@types/styled-components": "^5.1.15",
     "@udecode/plate": "^7.0.3",
     "react": "^17.0.0",
+    "react-dnd": "^14.0.4",
+    "react-dnd-html5-backend": "^14.0.2",
     "react-dom": "^17.0.0",
     "slate": "^0.66.5",
     "slate-history": "^0.66.0",
     "slate-hyperscript": "^0.67.0",
     "slate-react": "^0.69.0",
-    "styled-components": "^5.3.1"
+    "styled-components": "^5.3.1",
+    "tippy.js": "^6.3.7"
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",
@@ -23,7 +30,15 @@
     "@types/react-dom": "^17.0.0",
     "@vitejs/plugin-react": "^1.0.0",
     "jest": "^27.3.1",
+    "tailwindcss": "^2.2.19",
+    "twin.macro": "^2.8.1",
     "typescript": "^4.3.2",
-    "vite": "^2.6.4"
+    "vite": "^2.6.4",
+    "vite-plugin-babel-macros": "^1.0.5"
+  },
+  "babelMacros": {
+    "twin": {
+      "preset": "styled-components"
+    }
   }
 }
