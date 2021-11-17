@@ -1,42 +1,50 @@
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import {
   createPlateComponents,
   ELEMENT_PARAGRAPH,
   HeadingToolbar,
   MentionCombobox,
-  Plate,
-} from '@udecode/plate'
+  Plate
+} from '@udecode/plate';
 
-import { MarkBallonToolbar, ToolbarButtons } from './config/components/Toolbars'
-import { withStyledDraggables } from './config/components/withStyledDraggables'
-import { withStyledPlaceHolders } from './config/components/withStyledPlaceHolders'
-import { CONFIG } from './config/config'
-import { MENTIONABLES } from './config/mentionables'
-import { plugins } from './config/plugins'
+import {
+  MarkBallonToolbar,
+  ToolbarButtons
+} from './components/Toolbars';
+import { withStyledDraggables } from './components/withStyledDraggables';
+import {
+  withStyledPlaceHolders
+} from './components/withStyledPlaceHolders';
+import { CONFIG } from './config/config';
+import { MENTIONABLES } from './config/mentionables';
+import { plugins } from './config/plugins';
+import { FileHandleProvider } from './fileHandle/context';
 
 const components = withStyledDraggables(
   withStyledPlaceHolders(createPlateComponents())
 )
 
 const App = () => (
-  <DndProvider backend={HTML5Backend}>
-    <Plate
-      plugins={plugins}
-      components={components}
-      options={CONFIG.options}
-      editableProps={CONFIG.editableProps}
-      initialValue={[{ type: ELEMENT_PARAGRAPH, children: [{ text: '' }] }]}
-    >
-      <HeadingToolbar>
-        <ToolbarButtons />
-      </HeadingToolbar>
+  <FileHandleProvider>
+    <DndProvider backend={HTML5Backend}>
+      <Plate
+        plugins={plugins}
+        components={components}
+        options={CONFIG.options}
+        editableProps={CONFIG.editableProps}
+        initialValue={[{ type: ELEMENT_PARAGRAPH, children: [{ text: '' }] }]}
+      >
+        <HeadingToolbar>
+          <ToolbarButtons />
+        </HeadingToolbar>
 
-      <MarkBallonToolbar />
-      <MentionCombobox items={MENTIONABLES} />
-    </Plate>
-  </DndProvider>
+        <MarkBallonToolbar />
+        <MentionCombobox items={MENTIONABLES} />
+      </Plate>
+    </DndProvider>
+  </FileHandleProvider>
 )
 
 export default App
