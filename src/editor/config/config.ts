@@ -47,7 +47,6 @@ export const CONFIG: {
   options: Record<string, PlatePluginOptions>;
   components: Record<string, any>;
   editableProps: EditableProps;
-
   align: AlignPluginOptions;
   autoformat: AutoformatPluginOptions;
   exitBreak: ExitBreakPluginOptions;

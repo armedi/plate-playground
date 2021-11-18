@@ -1,25 +1,54 @@
-import React, { PropsWithChildren, useContext, useState } from 'react';
+import React, {
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 
-import FilePicker from './FilePicker';
+import { AnyObject, TNode } from '@udecode/plate'
 
-export const FileHandleContext =
-  React.createContext<FileSystemFileHandle | null>(null)
+import { fileHandler, FileHandler } from './FileHandler'
 
-export const useFileHandle = () => useContext(FileHandleContext)
+const stub = () => {
+  throw new Error(
+    'You forgot to wrap your component with <FileContentProvider>'
+  )
+}
 
-type FileHandleProviderProps = PropsWithChildren<{}>
+export const FileContentContext = React.createContext<{
+  fileHandler: FileHandler
+  savedValue?: TNode<AnyObject>[]
+  onSave(value: TNode<AnyObject>[]): void
+}>({
+  fileHandler,
+  savedValue: undefined,
+  onSave: stub,
+})
 
-export const FileHandleProvider = ({ children }: FileHandleProviderProps) => {
-  const [fileHandle, setFileHandle] = useState<FileSystemFileHandle | null>(
-    null
+export const useFileHandle = () => useContext(FileContentContext)
+
+type FileContentProviderProps = PropsWithChildren<{}>
+
+export const FileContentProvider = ({ children }: FileContentProviderProps) => {
+  const [fileContent, setFileContent] = useState('')
+
+  const contextValue = useMemo(
+    () => ({
+      fileHandler: fileHandler,
+      savedValue: fileContent ? JSON.parse(fileContent) : undefined,
+      onSave() {},
+    }),
+    [fileContent]
   )
 
+  useEffect(() => {
+    fileHandler.subscribe(setFileContent)
+  }, [])
+
   return (
-    <>
-      <FileHandleContext.Provider value={fileHandle}>
-        {children}
-      </FileHandleContext.Provider>
-      <FilePicker show={fileHandle === null} onFileSelected={setFileHandle} />
-    </>
+    <FileContentContext.Provider value={contextValue}>
+      {children}
+    </FileContentContext.Provider>
   )
 }

@@ -1,25 +1,23 @@
-import { Fragment } from 'react'
+import { Fragment, useContext } from 'react'
 
 import { Dialog, Transition } from '@headlessui/react'
 import { DocumentTextIcon } from '@heroicons/react/outline'
+import { FileContentContext } from './context'
 
-interface FilePickerProps {
-  show?: boolean
-  onFileSelected(fileHandle: FileSystemFileHandle): void
-}
+export const FilePicker = () => {
+  const { fileHandler } = useContext(FileContentContext)
 
-const FilePicker = ({ show, onFileSelected }: FilePickerProps) => {
   const handleOpenFile = () => {
-    window
-      .showOpenFilePicker({
-        types: [{ accept: { 'application/json': ['.json'] } }],
-      })
-      .then(([fileHandle]) => onFileSelected(fileHandle))
-      .catch(() => {})
+    fileHandler.openFile().catch(() => {})
+  }
+
+  const handleNewFile = () => {
+    fileHandler.newFile().catch(() => {})
   }
 
   return (
-    <Transition.Root show={show} as={Fragment}>
+    // @ts-ignore
+    <Transition.Root show={!fileHandler.ready} as={Fragment}>
       <Dialog
         as="div"
         className="fixed z-10 inset-0 overflow-y-auto"
@@ -27,6 +25,7 @@ const FilePicker = ({ show, onFileSelected }: FilePickerProps) => {
       >
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
+            // @ts-ignore
             as={Fragment}
             enter="ease-out duration-300"
             enterFrom="opacity-0"
@@ -46,6 +45,7 @@ const FilePicker = ({ show, onFileSelected }: FilePickerProps) => {
             &#8203;
           </span>
           <Transition.Child
+            // @ts-ignore
             as={Fragment}
             enter="ease-out duration-300"
             enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
@@ -79,10 +79,17 @@ const FilePicker = ({ show, onFileSelected }: FilePickerProps) => {
               <div className="mt-5 sm:mt-6">
                 <button
                   type="button"
-                  className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
+                  className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm mb-4 px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
                   onClick={handleOpenFile}
                 >
-                  Open file
+                  Open existing file
+                </button>
+                <button
+                  type="button"
+                  className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
+                  onClick={handleNewFile}
+                >
+                  Create new file
                 </button>
               </div>
             </div>
@@ -92,5 +99,3 @@ const FilePicker = ({ show, onFileSelected }: FilePickerProps) => {
     </Transition.Root>
   )
 }
-
-export default FilePicker
