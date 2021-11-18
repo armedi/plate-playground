@@ -1,22 +1,23 @@
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
+import { useContext } from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import {
   createPlateComponents,
   HeadingToolbar,
   MentionCombobox,
-  Plate,
-} from '@udecode/plate'
+  Plate
+} from '@udecode/plate';
 
-import { MarkBallonToolbar, ToolbarButtons } from './components/Toolbars'
-import { withStyledDraggables } from './components/withStyledDraggables'
-import { withStyledPlaceHolders } from './components/withStyledPlaceHolders'
-import { CONFIG } from './config/config'
-import { DEFAULTS } from './config/defaults'
-import { MENTIONABLES } from './config/mentionables'
-import { plugins } from './config/plugins'
-import { useContext } from 'react'
-import { FileContentContext } from '../fileHandle'
+import { FileContentContext } from '../fileHandle';
+import { MarkBallonToolbar, ToolbarButtons } from './components/Toolbars';
+import { withStyledDraggables } from './components/withStyledDraggables';
+import { withStyledPlaceHolders } from './components/withStyledPlaceHolders';
+import { CONFIG } from './config/config';
+import { CONSTANTS } from './config/constants';
+import { DEFAULTS } from './config/defaults';
+import { MENTIONABLES } from './config/mentionables';
+import { plugins } from './config/plugins';
 
 const components = withStyledDraggables(
   withStyledPlaceHolders(createPlateComponents())
@@ -28,6 +29,7 @@ export const PlateEditor = () => {
   return (
     <DndProvider backend={HTML5Backend}>
       <Plate
+        id={CONSTANTS.PLATE_ID}
         plugins={plugins}
         components={components}
         options={CONFIG.options}

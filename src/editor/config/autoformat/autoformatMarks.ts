@@ -7,7 +7,7 @@ import {
   MARK_STRIKETHROUGH,
   MARK_SUBSCRIPT,
   MARK_SUPERSCRIPT,
-  MARK_UNDERLINE,
+  MARK_UNDERLINE
 } from '@udecode/plate';
 
 export const autoformatMarks: AutoformatRule[] = [

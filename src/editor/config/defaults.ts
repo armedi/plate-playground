@@ -1,3 +1,5 @@
-import { ELEMENT_PARAGRAPH } from "@udecode/plate";
+import { ELEMENT_PARAGRAPH } from '@udecode/plate';
 
-export const DEFAULTS = { INITIAL_VALUE: [{ type: ELEMENT_PARAGRAPH, children: [{ text: '' }] }] }
+export const DEFAULTS = {
+  INITIAL_VALUE: [{ type: ELEMENT_PARAGRAPH, children: [{ text: '' }] }],
+}

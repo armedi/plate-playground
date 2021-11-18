@@ -15,6 +15,7 @@ specifiers:
   '@udecode/plate': ^7.0.3
   '@vitejs/plugin-react': ^1.0.0
   autoprefixer: ^10.4.0
+  is-hotkey: ^0.2.0
   jest: ^27.3.1
   postcss: ^8.3.11
   react: ^17.0.0
@@ -42,6 +43,7 @@ dependencies:
   '@tippyjs/react': 4.2.6_react-dom@17.0.2+react@17.0.2
   '@types/styled-components': 5.1.15
   '@udecode/plate': 7.0.3_7297d121858ef9bd7af6646e91c54a13
+  is-hotkey: 0.2.0
   react: 17.0.2
   react-dnd: 14.0.4_812c4b915b618d5091ca1e8ce4566766
   react-dnd-html5-backend: 14.0.2
@@ -3655,6 +3657,10 @@ packages:
 
   /is-hotkey/0.1.8:
     resolution: {integrity: sha512-qs3NZ1INIS+H+yeo7cD9pDfwYV/jqRh1JG9S9zYrNudkoUQg7OL7ziXqRKu+InFjUIDoP2o6HIkLYMh1pcWgyQ==}
+    dev: false
+
+  /is-hotkey/0.2.0:
+    resolution: {integrity: sha512-UknnZK4RakDmTgz4PI1wIph5yxSs/mvChWs9ifnlXsKuXgWmOkY/hAE0H/k2MIqH0RlRye0i1oC07MCRSD28Mw==}
     dev: false
 
   /is-number/7.0.0:

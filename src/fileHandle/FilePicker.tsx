@@ -1,8 +1,9 @@
-import { Fragment, useContext } from 'react'
+import { Fragment, useContext } from 'react';
 
-import { Dialog, Transition } from '@headlessui/react'
-import { DocumentTextIcon } from '@heroicons/react/outline'
-import { FileContentContext } from './context'
+import { Dialog, Transition } from '@headlessui/react';
+import { DocumentTextIcon } from '@heroicons/react/outline';
+
+import { FileContentContext } from './context';
 
 export const FilePicker = () => {
   const { fileHandler } = useContext(FileContentContext)

@@ -8,7 +8,7 @@ import {
   PlateEditor,
   TEditor,
   toggleList,
-  unwrapList,
+  unwrapList
 } from '@udecode/plate';
 
 export const clearBlockFormat: AutoformatBlockRule['preFormat'] = (editor) =>

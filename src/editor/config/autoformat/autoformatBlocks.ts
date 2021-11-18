@@ -14,8 +14,9 @@ import {
   insertEmptyCodeBlock,
   insertNodes,
   PlateEditor,
-  setNodes,
+  setNodes
 } from '@udecode/plate';
+
 import { clearBlockFormat } from './autoformatUtils';
 
 export const autoformatBlocks: AutoformatRule[] = [

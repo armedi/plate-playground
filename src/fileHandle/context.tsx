@@ -1,14 +1,16 @@
+import isHotkey from 'is-hotkey';
 import React, {
   PropsWithChildren,
   useContext,
   useEffect,
   useMemo,
-  useState,
-} from 'react'
+  useState
+} from 'react';
 
-import { AnyObject, TNode } from '@udecode/plate'
+import { AnyObject, plateStore, TNode } from '@udecode/plate';
 
-import { fileHandler, FileHandler } from './FileHandler'
+import { CONSTANTS } from '../editor/config/constants';
+import { fileHandler, FileHandler } from './FileHandler';
 
 const stub = () => {
   throw new Error(
@@ -35,15 +37,33 @@ export const FileContentProvider = ({ children }: FileContentProviderProps) => {
 
   const contextValue = useMemo(
     () => ({
-      fileHandler: fileHandler,
+      fileHandler,
       savedValue: fileContent ? JSON.parse(fileContent) : undefined,
       onSave() {},
     }),
     [fileContent]
   )
 
+  const onKeyDown = (event: KeyboardEvent) => {
+    if (isHotkey('mod+o', event)) {
+      event.preventDefault()
+      fileHandler.openFile().catch(() => {})
+    }
+
+    if (isHotkey('mod+s', event)) {
+      event.preventDefault()
+      const content = plateStore.getState()[CONSTANTS.PLATE_ID].value
+      fileHandler.saveFile(JSON.stringify(content, null, 2))
+    }
+  }
+
   useEffect(() => {
     fileHandler.subscribe(setFileContent)
+    window.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+    }
   }, [])
 
   return (

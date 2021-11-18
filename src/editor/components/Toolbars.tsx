@@ -17,13 +17,19 @@ import { FormatAlignJustify } from '@styled-icons/material/FormatAlignJustify';
 import { FormatAlignLeft } from '@styled-icons/material/FormatAlignLeft';
 import { FormatAlignRight } from '@styled-icons/material/FormatAlignRight';
 import { FormatBold } from '@styled-icons/material/FormatBold';
-import { FormatIndentDecrease } from '@styled-icons/material/FormatIndentDecrease';
-import { FormatIndentIncrease } from '@styled-icons/material/FormatIndentIncrease';
+import {
+  FormatIndentDecrease
+} from '@styled-icons/material/FormatIndentDecrease';
+import {
+  FormatIndentIncrease
+} from '@styled-icons/material/FormatIndentIncrease';
 import { FormatItalic } from '@styled-icons/material/FormatItalic';
 import { FormatListBulleted } from '@styled-icons/material/FormatListBulleted';
 import { FormatListNumbered } from '@styled-icons/material/FormatListNumbered';
 import { FormatQuote } from '@styled-icons/material/FormatQuote';
-import { FormatStrikethrough } from '@styled-icons/material/FormatStrikethrough';
+import {
+  FormatStrikethrough
+} from '@styled-icons/material/FormatStrikethrough';
 import { FormatUnderlined } from '@styled-icons/material/FormatUnderlined';
 import { Keyboard } from '@styled-icons/material/Keyboard';
 import { Looks3 } from '@styled-icons/material/Looks3';
@@ -71,7 +77,7 @@ import {
   outdent,
   TableToolbarButton,
   ToolbarButton,
-  usePlateEditorRef,
+  usePlateEditorRef
 } from '@udecode/plate';
 
 export const BasicElementToolbarButtons = () => {

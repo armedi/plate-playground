@@ -1,4 +1,7 @@
 import React from 'react';
+import { css } from 'styled-components';
+import tw from 'twin.macro';
+
 import { DragIndicator } from '@styled-icons/material/DragIndicator';
 import Tippy from '@tippyjs/react';
 import {
@@ -18,10 +21,8 @@ import {
   ELEMENT_TODO_LI,
   ELEMENT_UL,
   grabberTooltipProps,
-  withDraggables,
+  withDraggables
 } from '@udecode/plate';
-import { css } from 'styled-components';
-import tw from 'twin.macro';
 
 export const withStyledDraggables = (components: any) => {
   return withDraggables(components, [
