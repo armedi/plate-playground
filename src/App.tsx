@@ -1,3 +1,4 @@
+import Guide from './components/Guide';
 import { PlateEditor } from './editor/PlateEditor';
 import { FileContentProvider, FilePicker } from './fileHandle';
 
@@ -6,6 +7,7 @@ const App = () => {
     <FileContentProvider>
       <PlateEditor />
       <FilePicker />
+      <Guide />
     </FileContentProvider>
   )
 }

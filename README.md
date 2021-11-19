@@ -1,0 +1,1 @@
+open [https://plate-playground.vercel.app](https://plate-playground.vercel.app)
