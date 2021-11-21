@@ -4,10 +4,6 @@ export class FileHandler {
   private fileSystemFileHandle?: FileSystemFileHandle
   private listeners: FileContentListener[] = []
 
-  get ready() {
-    return !!this.fileSystemFileHandle
-  }
-
   async openFile() {
     const [fileHandle] = await window
       .showOpenFilePicker({
@@ -18,13 +14,14 @@ export class FileHandler {
     await this.notifySubscribers()
   }
 
-  async newFile() {
+  async newFile(initialValue: string) {
     const fileHandle = await window
       .showSaveFilePicker({
         types: [{ accept: { 'application/json': ['.json'] } }],
       })
 
     this.fileSystemFileHandle = fileHandle
+    await this.saveFile(initialValue)
     await this.notifySubscribers()
   }
 
